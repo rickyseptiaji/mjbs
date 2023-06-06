@@ -41,12 +41,10 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-calendar-check"></i>
-                    Menu Absensi
+                    Menu Stock
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/absensi">Absensi</a></li>
-                    <li><a class="dropdown-item" href="/izin">Izin</a></li>
-                    <li><a class="dropdown-item" href="/lembur">Lembur</a></li>
+                    <li><a class="dropdown-item" href="/stock">Stock Barang</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">

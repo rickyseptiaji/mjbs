@@ -1,5 +1,5 @@
 @extends('layouts.mainlayout')
-@section('title', 'Daftar')
+@section('title', 'Edit')
 @section('judul')
     <h5>Tambahkan Data Karyawan</h5>
 @endsection

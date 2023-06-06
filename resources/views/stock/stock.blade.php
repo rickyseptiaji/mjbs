@@ -1,58 +1,60 @@
 @extends('layouts.mainlayout')
-@section('title', 'Absensi')
+@section('title', 'Stock')
 @section('judul')
-    <h5>Daftar Hadir Karyawan</h5>
+    <h5>Stock Barang</h5>
 @endsection
 @section('content')
-<table class="table">
+<div class="d-flex">
+    <div class="p-2 flex-fill">
+        <a href="{{url('stock/create')}}" class="btn btn-primary">Tambah Produk</a>
+        <a href="{{route('excel.export')}}" class="btn btn-secondary">Export</a>   
+    </div>
+    <div class="p-2 flex-fill">
+        <form class="d-flex" role="search" action="{{url('stock')}}">
+            <input class="form-control me-2" type="search" placeholder="Search" name="katakunci" value="{{Request::get('katakunci')}}" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+    </div>
+  </div>
+<table class="table table-bordered">
     <thead>
 <tr>
-    <th scope="col">#</th>
-    <th scope="col">Nama Karyawan</th>
-    <th scope="col">Tanggal</th>
-    <th scope="col">Lokasi Absen</th>
-    <th scope="col">Jam Masuk</th>
-    <th scope="col">Jam Keluar</th>
+    <th scope="col">No</th>
+    <th scope="col">Produk</th>
+    <th scope="col">Kode</th>
+    <th scope="col">Kondisi</th>
+    <th scope="col">Qty</th>
+    <th scope="col">Satuan</th>
+    <th scope="col">Jumlah</th>
+    <th scope="col">Tanggal & Jam</th>
     <th scope="col">Aksi</th>
 </tr>
     </thead>
     <tbody>
+        @php
+        $increment = 1;
+    @endphp
+    @foreach ($data2 as $item)
         <tr>
-            <th scope="row">1</th>
-            <th scope="row">Ricky</th>
-            <th scope="row">2023-05-10</th>
-            <th scope="row">Unpam Viktor</th>
-            <th scope="row">16:21:14</th>
-            <th scope="row">18:15:14</th>
-            <th scope="row">
-                <button>Edit</button>
-                <button>Hapus</button>
+            <th>{{$increment++}}</th>
+            <th>{{$item->produk}}</th>
+            <th>{{$item->kode}}</th>
+            <th>{{$item->kondisi}}</th>
+            <th>{{$item->qty}}</th>
+            <th>{{$item->satuan}}</th> 
+            <th>{{$item->jumlah}}</th>
+            <th>{{$item->updated_at}}</th>
+            <th>
+                <a href="{{url('stock/'.$item->id.'/edit')}}" class="btn btn-primary">Ubah</a>
+                <form onsubmit="return confirm('Yakin akan menghapus data?')" class='d-inline' action="{{ url('stock/'.$item->id) }}" method="post">
+                    @csrf 
+                    @method('DELETE')
+                    <button type="submit" name="submit" class="btn btn-danger">Hapus</button>
+                </form>
             </th>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <th scope="row">Rocky</th>
-            <th scope="row">2022-03-10</th>
-            <th scope="row">Unpam Pusat</th>
-            <th scope="row">10:21:14</th>
-            <th scope="row">17:15:14</th>
-            <th scope="row">
-                <button>Edit</button>
-                <button>Hapus</button>
-            </th>
-        </tr>
-        <tr>
-            <th scope="row">1</th>
-            <th scope="row">Riko</th>
-            <th scope="row">2021-02-09</th>
-            <th scope="row">Kampus Kimia</th>
-            <th scope="row">09:21:14</th>
-            <th scope="row">10:15:14</th>
-            <th scope="row">
-                <button>Edit</button>
-                <button>Hapus</button>
-            </th>
-        </tr>
+        @endforeach
     </tbody>
 </table>
+{{ $data2->withQueryString()->links() }}
 @endsection

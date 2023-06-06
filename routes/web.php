@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\karyawanController;
+use App\Http\Controllers\produkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,6 @@ Route::get('/', function () {
     })->name('logout');
 
 Route::resource('karyawan', karyawanController::class);
+
+Route::resource('stock', produkController::class);
+Route::get('/exportstock', [produkController::class, 'datastock'])->name('excel.export');
