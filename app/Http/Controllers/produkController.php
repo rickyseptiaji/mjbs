@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\StockExport;
+use Carbon\Carbon;
 use App\Models\datastock;
+use App\Exports\StockExport;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class produkController extends Controller
 {
@@ -17,14 +18,25 @@ class produkController extends Controller
     public function index(Request $request)
     {
         $katakunci = $request->katakunci;
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
         $jumlahbaris = 4;
-        if(strlen($katakunci)){
-            $data2 = datastock::where('produk','like', "%$katakunci%")
-            ->orWhere('kode', 'like', "%$katakunci%")
-            ->paginate($jumlahbaris);
-        }else{
-            $data2 = datastock::orderBy('id','desc')->paginate($jumlahbaris);
+
+        $query = datastock::query();
+
+        if (strlen($katakunci)) {
+            $query->where('produk', 'like', "%$katakunci%")
+                ->orWhere('kode', 'like', "%$katakunci%");
         }
+
+        if ($start_date && $end_date) {
+            $start_date = Carbon::parse($start_date)->startOfDay();
+            $end_date = Carbon::parse($end_date)->endOfDay();
+            $query->whereBetween('updated_at', [$start_date, $end_date]);
+        }
+
+        $data2 = $query->orderBy('id', 'desc')->paginate($jumlahbaris);
+
         return view('stock.stock')->with('data2', $data2);
     }
 

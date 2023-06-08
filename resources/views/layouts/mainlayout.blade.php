@@ -9,10 +9,10 @@
     <title>Dashboard | @yield('title')</title>
 </head>
 <body>
-    <nav class="navbar bg-primary sticky-top row">
+    <nav class="navbar bg-primary sticky-top">
         <div class="container-fluid flex-row-reverse">
           <a class="bg-light rounded-circle mx-5" href="#">
-            <img class="rounded-circle" src="assets/user.png" alt="user" width="35" height="35">
+            <img class="rounded-circle" src="/assets/user.png" alt="user" width="35" height="35">
           </a>
           <button class="navbar-toggler navbar-dark mx-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -84,7 +84,7 @@
             </div>
             </div>
           </div>
-        </div>
+        </nav>
       </nav>
       <div class="container-fluid py-4 bg-primary bg-gradient">
   <div class="container text-white">
