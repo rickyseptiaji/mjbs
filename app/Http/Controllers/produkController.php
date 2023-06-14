@@ -25,14 +25,14 @@ class produkController extends Controller
         $query = datastock::query();
 
         if (strlen($katakunci)) {
-            $query->where('produk', 'like', "%$katakunci%")
-                ->orWhere('kode', 'like', "%$katakunci%");
+            $query->where(function ($q) use ($katakunci) {
+                $q->where('produk', 'like', "%$katakunci%")
+                  ->orWhere('kode', 'like', "%$katakunci%");
+            });
         }
 
         if ($start_date && $end_date) {
-            $start_date = Carbon::parse($start_date)->startOfDay();
-            $end_date = Carbon::parse($end_date)->endOfDay();
-            $query->whereBetween('updated_at', [$start_date, $end_date]);
+            $query->whereBetween('updated_at', [Carbon::parse($start_date)->startOfDay(), Carbon::parse($end_date)->endOfDay()]);
         }
 
         $data2 = $query->orderBy('id', 'desc')->paginate($jumlahbaris);
@@ -40,8 +40,27 @@ class produkController extends Controller
         return view('stock.stock')->with('data2', $data2);
     }
 
-    public function datastock(){
-        return Excel::download(new StockExport, 'datastock.xlsx');
+    public function exportToExcel(Request $request){
+        $start_date = $request->start_date;
+        $end_date = $request->end_date;
+        $katakunci = $request->katakunci;
+    
+        $query = datastock::query();
+    
+        if ($start_date && $end_date) {
+            $query->whereBetween('updated_at', [Carbon::parse($start_date)->startOfDay(), Carbon::parse($end_date)->endOfDay()]);
+        }
+    
+        if ($katakunci) {
+            $query->where(function ($q) use ($katakunci) {
+                $q->where('produk', 'like', "%$katakunci%")
+                  ->orWhere('kode', 'like', "%$katakunci%");
+            });
+        }
+    
+        $data2 = $query->get();
+    
+        return Excel::download(new StockExport($data2), 'datastock.xlsx');
     }
 
     /**

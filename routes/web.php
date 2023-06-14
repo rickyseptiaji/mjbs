@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\StockExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -31,4 +32,6 @@ Route::get('/', function () {
 Route::resource('karyawan', karyawanController::class);
 
 Route::resource('stock', produkController::class);
-Route::get('/exportstock', [produkController::class, 'datastock'])->name('excel.export');
+Route::get('/export', [produkController::class, 'exportToExcel'])->name('excel.export');
+
+

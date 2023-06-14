@@ -10,11 +10,11 @@
     <div class="d-flex flex-wrap">
         <div class="p-2 flex-fill">
             <a href="{{url('stock/create')}}" class="btn btn-primary">Tambah Produk</a>
-            <a href="{{route('excel.export')}}" class="btn btn-secondary">Export</a>
+            <a href="{{ route('excel.export', ['start_date' => Request::get('start_date'), 'end_date' => Request::get('end_date'), 'katakunci' => Request::get('katakunci')]) }}" class="btn btn-secondary">Export</a>
         </div>
         <div class="p-2 flex-fill">
             <form class="d-flex" role="search" action="{{url('stock')}}">
-                <input class="form-control me-2" type="search" placeholder="Search" name="katakunci" value="{{Request::get('katakunci')}}" aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Search" name="katakunci" value="{{ $katakunci ?? '' }}" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
@@ -47,7 +47,7 @@
         </thead>
         <tbody>
             @php
-            $increment = 1;
+            $increment = ($data2->currentPage() - 1) * $data2->perPage() + 1;
             @endphp
             @foreach ($data2 as $item)
             <tr>
