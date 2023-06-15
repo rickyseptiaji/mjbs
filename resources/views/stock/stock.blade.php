@@ -3,7 +3,7 @@
 @section('title', 'Stock')
 
 @section('judul')
-    <h5>Stock Barang</h5>
+    <h5>Data Produk</h5>
 @endsection
 
 @section('content')

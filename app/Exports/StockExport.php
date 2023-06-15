@@ -31,7 +31,8 @@ class StockExport implements FromCollection, WithHeadings
             'Qty',
             'Satuan',
             'Jumlah',
-            'Tanggal & Jam'
+            'Created',
+            'Updated'
         ];
     }
 }

@@ -37,9 +37,9 @@
         </div>
         <div class="col-md-3 col-sm-6">
             <div class="card text-center">
-                <a href="" class="shadow p-3 bg-body-tertiary rounded link-underline link-underline-opacity-0">
-                    <img src="assets/check.png" alt="check" height="100" width="100">
-                    <p class="text-black">Izin</p>
+                <a href="/stock" class="shadow p-3 bg-body-tertiary rounded link-underline link-underline-opacity-0">
+                    <img src="assets/product.png" alt="check" height="100" width="100">
+                    <p class="text-black">Data Produk</p>
                 </a>
             </div>
         </div>

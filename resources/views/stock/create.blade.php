@@ -1,7 +1,7 @@
 @extends('layouts.mainlayout')
 @section('title', 'Create Stock')
 @section('judul')
-    <h5>Tambahkan Data Stock</h5>
+    <h5>Tambahkan Data Produk</h5>
 @endsection
 @section('content')
 <form action="{{ url('stock') }}" method="post">

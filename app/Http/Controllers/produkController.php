@@ -60,7 +60,7 @@ class produkController extends Controller
     
         $data2 = $query->get();
     
-        return Excel::download(new StockExport($data2), 'datastock.xlsx');
+        return Excel::download(new StockExport($data2), 'dataproduk.xlsx');
     }
 
     /**

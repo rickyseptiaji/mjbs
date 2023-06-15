@@ -42,10 +42,10 @@
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fa-solid fa-calendar-check"></i>
-                    Menu Stock
+                    Menu Produk
                   </a>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="/stock">Stock Barang</a></li>
+                    <li><a class="dropdown-item" href="/stock">Data Produk</a></li>
                   </ul>
                 </li>
                 <li class="nav-item dropdown">
