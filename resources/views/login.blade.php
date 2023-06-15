@@ -62,7 +62,7 @@
         -webkit-overflow-scrolling: touch;
       }
     </style>
-
+    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
     
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
@@ -72,7 +72,7 @@
 <main class="form-signin w-100 m-auto">
   <form action="{{ route('login') }}" method="POST">
     @csrf
-    <img class="mb-4" src="https://www.mjbsentosa.com/wp-content/uploads/2021/06/mbj-new.png" alt="" width="72" height="57">
+    <img class="mb-4" src="/assets/mjbs.png" alt="logo" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
     <div class="form-floating">
